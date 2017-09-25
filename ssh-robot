@@ -1,0 +1,16 @@
+#!/bin/bash
+
+while getopts "h:s:" o; do
+	case "${o}" in
+		h)
+			hostfile=${OPTARG}
+			;;
+		s)
+			scriptfile=${OPTARG}
+			;;
+	esac
+done
+
+while read hostline; do
+	ssh ${hostline} 'bash -s' < ${scriptfile}
+done < "${hostfile}"
