@@ -12,5 +12,6 @@ while getopts "h:s:" o; do
 done
 
 while read hostline; do
+	echo "`tput setaf 2`[${hostline}]`tput sgr0`"
 	ssh ${hostline} 'bash -s' < ${scriptfile}
 done < "${hostfile}"
